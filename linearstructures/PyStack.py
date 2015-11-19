@@ -47,6 +47,27 @@ def revstring(mystr):
     return ''.join(my_list)
 
 
+### usage of Stack: check the simple balanced parentheses
+def checkparentheses(symbo_string):
+    s = Stack()
+    balanced = True
+    index = 0
+    while index < len(symbo_string) and balanced:
+        c = symbo_string[index]
+        if c == '(':
+            s.push(c)
+        elif s.is_empty():
+            balanced = False
+        else:
+            s.pop()
+        index += 1
+
+    if s.is_empty() and balanced:
+        return True
+    else:
+        return False
+
+
 if __name__ == '__main__':
     my_stack = Stack()
 
@@ -69,3 +90,7 @@ if __name__ == '__main__':
     assert(revstring('x') == 'x')
     assert(revstring('1234567890') == '0987654321')
 
+    # Test checkparentheses()
+    print checkparentheses('(()((()))())')
+    print checkparentheses('(()')
+    print checkparentheses('())(()')
